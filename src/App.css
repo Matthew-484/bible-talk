@@ -28,6 +28,15 @@
   color: #61dafb;
 }
 
+.Title-header {
+  height: 40;
+  align-items: center;
+}
+
+.Header-picture {
+  object-fit: cover;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
