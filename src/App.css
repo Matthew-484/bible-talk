@@ -6,6 +6,46 @@
   position: relative;
 }
 
+.divStyles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  position: relative;
+  width: 1280px;
+  height: 550px;
+  background-image: radial-gradient(rgb(107, 233, 255), white 85%);
+}
+
+.verse-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  margin-top: 50px;
+}
+
+.verse {
+  width: 400px;
+  position: relative;
+  margin-left: 75px;
+  outline: #282c34 solid 3px;
+  outline-style: groove;
+  padding: 10px;
+}
+
+.verse-image {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  border-radius: 25px;
+}
+
+.title {
+  position: relative;
+  top: 20px;
+}
+
 .App {
   display: flex;
   flex-direction: column;
