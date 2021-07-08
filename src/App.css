@@ -1,5 +1,17 @@
+.pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .App-logo {
@@ -26,15 +38,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.Title-header {
-  height: 40;
-  align-items: center;
-}
-
-.Header-picture {
-  object-fit: cover;
 }
 
 @keyframes App-logo-spin {

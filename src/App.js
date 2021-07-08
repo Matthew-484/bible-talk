@@ -1,9 +1,21 @@
 import "./App.css";
+import NavBar from "./components/navbar";
+import home from "./Webpages/home";
+import Btalk from "./Webpages/B-talk";
+import { Route } from "react-router-dom";
+import "./App.css";
+
+//FIX OVERLAPPING DIVS!!!!!!!!!
 
 function App() {
   return (
-    <div className="Title-header">
-      <img src="./images/headerImage.jpeg" alt="Unable to load" />
+    <div className="App">
+      <div>
+        <NavBar />
+      </div>
+
+      <Route exact path="/" component={home} />
+      <Route exact path="/Btalk" component={Btalk} />
     </div>
   );
 }
