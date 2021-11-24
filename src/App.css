@@ -112,6 +112,10 @@
   padding: 10px;
 }
 
+.appBar {
+  align-items: center;
+}
+
 .App {
   display: flex;
   flex-direction: column;

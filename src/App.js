@@ -10,9 +10,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <div>
-        <NavBar />
-      </div>
+      <NavBar />
 
       <Route exact path="/" component={home} />
       <Route exact path="/Btalk" component={Btalk} />

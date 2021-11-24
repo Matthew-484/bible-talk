@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import "../App.css";
 import bibleImage from "../images/bible.jpeg";
-import { LoremIpsum } from "lorem-ipsum";
 import bibleStudyImage from "../images/bible-study.jpeg";
 import Button from "@material-ui/core/Button";
-
-const lorem = new LoremIpsum({
-  wordsPerSentence: {
-    max: 10,
-    min: 4,
-  },
-});
 
 const buttonStyle = {
   backgroundColor: "white",
@@ -21,7 +13,7 @@ const buttonStyle = {
   borderRadius: 30,
 };
 
-function displayStudy(showStudy) {
+function displayStudy(showStudy, studyArray, index) {
   if (showStudy === true) {
     console.log("showStudy is true");
     return (
@@ -34,7 +26,7 @@ function displayStudy(showStudy) {
             src={bibleStudyImage}
             alt="Unable to Load"
           />
-          <h3 className="writing">{lorem.generateSentences(6)}</h3>
+          <h3 className="writing">{studyArray[index].study}</h3>
         </div>
       </div>
     );
@@ -43,9 +35,22 @@ function displayStudy(showStudy) {
   }
 }
 
+const indexData = localStorage.getItem("index");
+const dayData = localStorage.getItem("day");
+
 class home extends Component {
   state = {
     showStudy: false,
+    studyArray: [
+      {
+        verse:
+          "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes: first to the Jew, then to the Gentile. For in the gospel the righteousness of God is revealed–a righteousness that is by faith from first to last, just as it is written: 'The righteous will live by faith.' Romans 1:16-17",
+        study: "study 1",
+      },
+      { verse: "verse 2", study: "study 2" },
+    ],
+    index: indexData ? parseInt(indexData) : 0,
+    day: dayData ? parseInt(dayData) : 10,
   };
 
   handleSwitch = () => {
@@ -53,9 +58,34 @@ class home extends Component {
     this.setState({ showStudy });
   };
 
+  updateIndex = (length) => {
+    const index = Math.floor(Math.random() * length);
+    this.setState({ index });
+    localStorage.setItem("index", this.state.index);
+  };
+
+  updateDay = (day) => {
+    this.setState({ day });
+    localStorage.setItem("day", this.state.day);
+  };
+
+  setBibleStudy = (studyArrayLength) => {
+    const date = new Date();
+    const currentDate = date.getDay();
+    const day = parseInt(localStorage.getItem("day"));
+
+    if (currentDate !== day) {
+      this.updateIndex(studyArrayLength);
+      this.updateDay(currentDate);
+    }
+  };
+
   render() {
+    const { showStudy, studyArray, index } = this.state;
+
     return (
       <div className="divStyle2">
+        {this.setBibleStudy(studyArray.length)}
         <div className="divStyles">
           <h1 className="title">Verse of the Day</h1>
 
@@ -65,7 +95,7 @@ class home extends Component {
               src={bibleImage}
               alt="Unable to Load"
             />
-            <h3 className="writing">{lorem.generateSentences(5)}</h3>
+            <h3 className="writing">{studyArray[index].verse}</h3>
           </div>
         </div>
         <div className="home-button-div">
@@ -79,7 +109,7 @@ class home extends Component {
           </Button>
         </div>
 
-        {displayStudy(this.state.showStudy)}
+        {displayStudy(showStudy, studyArray, index)}
       </div>
     );
   }

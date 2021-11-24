@@ -15,15 +15,27 @@ const theme = createTheme({
 });
 
 const enterButtonStyle = {
-  marginTop: 20,
-  marginLeft: 330,
+  marginLeft: 20,
   fontWeight: "bold",
   width: 100,
+  height: 55,
+};
+
+const answerInput = {
+  display: "flex",
+  flexDirection: "row",
+  marginTop: 20,
+  width: 750,
 };
 
 class CommentBox extends Component {
+  state = {
+    textValue: null,
+  };
+
   render() {
-    const { question, answers } = this.props;
+    const { question, answers, handleAnswerSubmit, updateAnswerValue } =
+      this.props;
 
     return (
       <div className="commentBoxDiv">
@@ -38,27 +50,37 @@ class CommentBox extends Component {
           return <Answers answer={answer} />;
         })}
 
-        <ThemeProvider theme={theme}>
-          <TextField
-            variant="outlined"
-            placeholder="Type answer here..."
-            style={{ marginLeft: 30 }}
-          />
+        <div style={answerInput}>
+          <ThemeProvider theme={theme}>
+            <form
+              noValidate
+              autoComplete="off"
+              onSubmit={(e) => handleAnswerSubmit(e, this.props.id)}
+            >
+              <TextField
+                variant="outlined"
+                placeholder="Type answer here..."
+                style={{ marginLeft: 30, width: 600 }}
+                onChange={(e) => updateAnswerValue(e.target.value)}
+              />
 
-          {
-            // Add onClick function to add this to local storage
-            // (get data from curret local storage, add new input, then add new list to local storage)
-          }
+              {
+                // Add onClick function to add this to local storage
+                // (get data from curret local storage, add new input, then add new list to local storage)
+              }
 
-          <Button
-            size="large"
-            variant="contained"
-            style={enterButtonStyle}
-            color="primary"
-          >
-            Enter
-          </Button>
-        </ThemeProvider>
+              <Button
+                size="large"
+                variant="contained"
+                style={enterButtonStyle}
+                color="primary"
+                type="submit"
+              >
+                Add
+              </Button>
+            </form>
+          </ThemeProvider>
+        </div>
         {
           // When text is entered call a function that will add the answer to an array
         }

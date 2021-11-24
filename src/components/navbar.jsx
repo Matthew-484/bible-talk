@@ -30,7 +30,7 @@ function NavBar() {
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>
-        <AppBar color="primary" position="fixed">
+        <AppBar className="appBar" color="primary" position="fixed">
           <ToolBar>
             <IconButton>
               <img
@@ -39,7 +39,6 @@ function NavBar() {
                 style={{
                   height: 55,
                   width: 45,
-                  marginLeft: 200,
                 }}
               />
             </IconButton>
@@ -54,9 +53,6 @@ function NavBar() {
                 B-talk
               </Link>
             </Button>
-            <Button style={buttonStyle}>Untitled</Button>
-            <Button style={buttonStyle}>Untitled</Button>
-            <Button style={buttonStyle}>Untitled</Button>
           </ToolBar>
         </AppBar>
         <ToolBar />

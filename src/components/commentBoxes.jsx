@@ -3,12 +3,18 @@ import CommentBox from "./commentBox";
 
 class CommentBoxes extends Component {
   render() {
-    const { contents } = this.props;
+    const { contents, handleAnswerSubmit, updateAnswerValue } = this.props;
     return (
       <div>
         {contents.map((content) => {
           return (
-            <CommentBox question={content.question} answers={content.answers} />
+            <CommentBox
+              question={content.question}
+              answers={content.answers}
+              handleAnswerSubmit={handleAnswerSubmit}
+              updateAnswerValue={updateAnswerValue}
+              id={contents.indexOf(content)}
+            />
           );
         })}
       </div>
